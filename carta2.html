@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta do Aluno 2 - Aniversário do Professor Kristian</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para a página da carta 2 */
+    .carta-container {
+      max-width: 900px;
+      margin: 100px auto 50px;
+      padding: 50px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      border-radius: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carta-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(255, 107, 107, 0.08) 0%, 
+        rgba(255, 255, 255, 0.03) 25%,
+        rgba(107, 107, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 75%,
+        rgba(255, 107, 107, 0.08) 100%);
+      pointer-events: none;
+    }
+
+    .carta-titulo {
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #4facfe;
+      text-shadow: 0 0 40px rgba(79, 172, 254, 0.6);
+      animation: tituloPulse 4s ease-in-out infinite alternate;
+    }
+
+    .carta-conteudo {
+      font-size: 1.4rem;
+      line-height: 1.9;
+      color: white;
+      text-align: justify;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 2;
+    }
+
+    .carta-conteudo p {
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInLeft 1.2s ease-out forwards;
+    }
+
+    .carta-conteudo p:nth-child(1) { animation-delay: 0.8s; }
+    .carta-conteudo p:nth-child(2) { animation-delay: 1.3s; }
+    .carta-conteudo p:nth-child(3) { animation-delay: 1.8s; }
+    .carta-conteudo p:nth-child(4) { animation-delay: 2.3s; }
+    .carta-conteudo p:nth-child(5) { animation-delay: 2.8s; }
+
+    .carta-assinatura {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ff6b6b;
+      margin-top: 50px;
+      opacity: 0;
+      animation: fadeInScale 1.5s ease-out 3.5s forwards;
+      text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    }
+
+    .voltar-btn {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .voltar-btn:hover {
+      background: rgba(79, 172, 254, 0.3);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .decoracao-carta {
+      position: absolute;
+      font-size: 2.5rem;
+      opacity: 0.2;
+      animation: floatRotate 8s ease-in-out infinite;
+    }
+
+    .decoracao-carta:nth-child(1) {
+      top: 30px;
+      left: 30px;
+      animation-delay: 0s;
+    }
+
+    .decoracao-carta:nth-child(2) {
+      top: 30px;
+      right: 30px;
+      animation-delay: 2s;
+    }
+
+    .decoracao-carta:nth-child(3) {
+      bottom: 30px;
+      left: 30px;
+      animation-delay: 4s;
+    }
+
+    .decoracao-carta:nth-child(4) {
+      bottom: 30px;
+      right: 30px;
+      animation-delay: 6s;
+    }
+
+    .decoracao-carta:nth-child(5) {
+      top: 50%;
+      left: 20px;
+      animation-delay: 1s;
+    }
+
+    .decoracao-carta:nth-child(6) {
+      top: 50%;
+      right: 20px;
+      animation-delay: 3s;
+    }
+
+    @keyframes floatRotate {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+      }
+      25% { 
+        transform: translateY(-15px) rotate(90deg) scale(1.1); 
+      }
+      50% { 
+        transform: translateY(-30px) rotate(180deg) scale(1.2); 
+      }
+      75% { 
+        transform: translateY(-15px) rotate(270deg) scale(1.1); 
+      }
+    }
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes tituloPulse {
+      0% { 
+        transform: scale(1);
+        text-shadow: 0 0 40px rgba(79, 172, 254, 0.6);
+      }
+      100% { 
+        transform: scale(1.02);
+        text-shadow: 0 0 60px rgba(79, 172, 254, 0.8);
+      }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .carta-container {
+        margin: 80px 20px 30px;
+        padding: 35px 25px;
+      }
+
+      .carta-titulo {
+        font-size: 2.2rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.2rem;
+      }
+
+      .voltar-btn {
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carta-container {
+        margin: 70px 15px 20px;
+        padding: 30px 20px;
+      }
+
+      .carta-titulo {
+        font-size: 1.9rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.1rem;
+        text-align: left;
+      }
+
+      .carta-conteudo p {
+        transform: translateY(30px);
+        animation: fadeInUp 1.2s ease-out forwards;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão de voltar -->
+  <a href="index.html" class="voltar-btn">← Voltar</a>
+
+  <!-- Decoracoes -->
+  <div class="decoracao-superior">
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+    <div class="estrela">💫</div>
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+  </div>
+
+  <!-- Container da carta -->
+  <div class="carta-container">
+    <!-- Decoracoes da carta -->
+    <div class="decoracao-carta">🎓</div>
+    <div class="decoracao-carta">📚</div>
+    <div class="decoracao-carta">💡</div>
+    <div class="decoracao-carta">🎯</div>
+    <div class="decoracao-carta">⭐</div>
+    <div class="decoracao-carta">🚀</div>
+
+    <h1 class="carta-titulo">Carta Especial</h1>
+    
+    <div class="carta-conteudo">
+      <p>Professor Kristian,</p>
+      
+      <p>Hoje é um dia especial, e é impossível não refletir sobre o quanto você faz a diferença em nossas vidas. Não é só o conhecimento que você transmite, mas a forma como nos faz sentir motivados a aprender e a buscar sempre mais. Cada aula sua é uma oportunidade de crescer, de entender o que parecia complicado e de, até mesmo, "varzear" em alguns momentos.</p>
+      
+      <p>Agradeço pela dedicação, pelo carinho e pela paciência com cada um de nós. Cada dúvida que surgia era recebida com atenção, e cada explicação parecia um convite para um novo caminho, uma nova descoberta. Você não é apenas um professor, é uma inspiração para todos nós.</p>
+      
+      <p>Que seu aniversário seja tão incrível quanto a forma como você torna o aprendizado algo tão valioso e prazeroso. Que seu caminho continue sendo iluminado, cheio de novas vitórias, e que sua paixão pelo que faz nunca se apague.</p>
+      
+      <p><strong>Feliz Aniversário!</strong></p>
+    </div>
+
+    <div class="carta-assinatura">
+      Com admiração e gratidão,<br>
+      <strong>Aluno 2</strong>
+    </div>
+  </div>
+
+  <!-- Decoracoes inferiores -->
+  <div class="decoracao-inferior">
+    <div class="balao">🎈</div>
+    <div class="balao">🎁</div>
+    <div class="balao">🎂</div>
+    <div class="balao">🎈</div>
+  </div>
+
+  <!-- Canvas para confetes -->
+  <canvas id="confete"></canvas>
+
+  <script src="script.js"></script>
+  <script>
+    // Confetes especiais para a página da carta 2
+    document.addEventListener('DOMContentLoaded', () => {
+      // Explosão inicial de confetes mais intensa
+      setTimeout(() => {
+        const centroX = window.innerWidth / 2;
+        const centroY = window.innerHeight / 2;
+        criarConfetes(20, true, centroX, centroY);
+        
+        // Explosões secundárias
+        setTimeout(() => {
+          criarConfetes(15, true, centroX - 100, centroY - 50);
+          criarConfetes(15, true, centroX + 100, centroY - 50);
+        }, 500);
+      }, 3000);
+
+      // Confetes ao clicar na carta
+      const cartaContainer = document.querySelector('.carta-container');
+      cartaContainer.addEventListener('click', () => {
+        const rect = cartaContainer.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        criarConfetes(18, true, x, y);
+        
+        // Efeito visual na carta
+        cartaContainer.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          cartaContainer.style.transform = '';
+        }, 300);
+      });
+
+      // Confetes ao passar o mouse sobre parágrafos
+      const paragrafos = document.querySelectorAll('.carta-conteudo p');
+      paragrafos.forEach(paragrafo => {
+        paragrafo.addEventListener('mouseenter', () => {
+          const rect = paragrafo.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          criarConfetes(8, true, x, y);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
