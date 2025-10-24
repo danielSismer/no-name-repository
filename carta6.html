@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta do Aluno 6 - Aniversário do Professor Kristian</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para a página da carta 6 */
+    .carta-container {
+      max-width: 950px;
+      margin: 100px auto 50px;
+      padding: 60px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(40px);
+      border-radius: 55px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carta-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255, 0, 150, 0.15) 0%, 
+        rgba(0, 255, 255, 0.15) 25%,
+        rgba(255, 255, 0, 0.15) 50%,
+        rgba(255, 0, 255, 0.15) 75%,
+        rgba(0, 255, 0, 0.15) 100%);
+      pointer-events: none;
+    }
+
+    .carta-titulo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 50px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbowText 3s ease-in-out infinite;
+    }
+
+    .carta-conteudo {
+      font-size: 1.6rem;
+      line-height: 2.1;
+      color: white;
+      text-align: justify;
+      margin-bottom: 50px;
+      text-shadow: 0 3px 25px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 2;
+    }
+
+    .carta-conteudo p {
+      margin-bottom: 35px;
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+      animation: vibrantSlideIn 2s ease-out forwards;
+    }
+
+    .carta-conteudo p:nth-child(1) { animation-delay: 1s; }
+    .carta-conteudo p:nth-child(2) { animation-delay: 1.7s; }
+    .carta-conteudo p:nth-child(3) { animation-delay: 2.4s; }
+    .carta-conteudo p:nth-child(4) { animation-delay: 3.1s; }
+
+    .carta-assinatura {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff00ff;
+      margin-top: 60px;
+      opacity: 0;
+      animation: vibrantFadeIn 2.5s ease-out 4s forwards;
+      text-shadow: 0 0 35px rgba(255, 0, 255, 0.8);
+    }
+
+    .voltar-btn {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      padding: 20px 35px;
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      transition: all 0.6s ease;
+      z-index: 100;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .voltar-btn:hover {
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .decoracao-carta {
+      position: absolute;
+      font-size: 3.5rem;
+      opacity: 0.2;
+      animation: vibrantFloat 12s ease-in-out infinite;
+    }
+
+    .decoracao-carta:nth-child(1) {
+      top: 40px;
+      left: 40px;
+      animation-delay: 0s;
+    }
+
+    .decoracao-carta:nth-child(2) {
+      top: 40px;
+      right: 40px;
+      animation-delay: 3s;
+    }
+
+    .decoracao-carta:nth-child(3) {
+      bottom: 40px;
+      left: 40px;
+      animation-delay: 6s;
+    }
+
+    .decoracao-carta:nth-child(4) {
+      bottom: 40px;
+      right: 40px;
+      animation-delay: 9s;
+    }
+
+    .decoracao-carta:nth-child(5) {
+      top: 20%;
+      left: 30px;
+      animation-delay: 1.5s;
+    }
+
+    .decoracao-carta:nth-child(6) {
+      top: 20%;
+      right: 30px;
+      animation-delay: 4.5s;
+    }
+
+    .decoracao-carta:nth-child(7) {
+      bottom: 20%;
+      left: 30px;
+      animation-delay: 7.5s;
+    }
+
+    .decoracao-carta:nth-child(8) {
+      bottom: 20%;
+      right: 30px;
+      animation-delay: 10.5s;
+    }
+
+    @keyframes vibrantFloat {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+      }
+      12.5% { 
+        transform: translateY(-25px) rotate(45deg) scale(1.2); 
+      }
+      25% { 
+        transform: translateY(-50px) rotate(90deg) scale(1.4); 
+      }
+      37.5% { 
+        transform: translateY(-25px) rotate(135deg) scale(1.2); 
+      }
+      50% { 
+        transform: translateY(0px) rotate(180deg) scale(1); 
+      }
+      62.5% { 
+        transform: translateY(25px) rotate(225deg) scale(0.8); 
+      }
+      75% { 
+        transform: translateY(50px) rotate(270deg) scale(0.6); 
+      }
+      87.5% { 
+        transform: translateY(25px) rotate(315deg) scale(0.8); 
+      }
+    }
+
+    @keyframes vibrantSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes vibrantFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1.1) rotate(2deg);
+      }
+    }
+
+    @keyframes rainbowText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .carta-container {
+        margin: 80px 20px 30px;
+        padding: 50px 40px;
+      }
+
+      .carta-titulo {
+        font-size: 2.8rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.4rem;
+      }
+
+      .voltar-btn {
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carta-container {
+        margin: 70px 15px 20px;
+        padding: 45px 35px;
+      }
+
+      .carta-titulo {
+        font-size: 2.4rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.3rem;
+        text-align: left;
+      }
+
+      .carta-conteudo p {
+        transform: translateY(30px);
+        animation: gentleFadeIn 2s ease-out forwards;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão de voltar -->
+  <a href="index.html" class="voltar-btn">← Voltar</a>
+
+  <!-- Decoracoes -->
+  <div class="decoracao-superior">
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+    <div class="estrela">💫</div>
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+  </div>
+
+  <!-- Container da carta -->
+  <div class="carta-container">
+    <!-- Decoracoes da carta -->
+    <div class="decoracao-carta">🎨</div>
+    <div class="decoracao-carta">🌈</div>
+    <div class="decoracao-carta">✨</div>
+    <div class="decoracao-carta">🎭</div>
+    <div class="decoracao-carta">🎪</div>
+    <div class="decoracao-carta">🎨</div>
+    <div class="decoracao-carta">🌈</div>
+    <div class="decoracao-carta">✨</div>
+
+    <h1 class="carta-titulo">Carta Vibrante</h1>
+    
+    <div class="carta-conteudo">
+      <p>Parabéns professor Kristian!!!!! 🥳🥳</p>
+      
+      <p>Hoje a gente celebra não só o seu dia, mas também todas aquelas vezes que você transformou nosso código bagunçado em algo bonito e funcional.</p>
+      
+      <p>Que seu aniversário seja cheio de cores vibrantes, animações suaves e momentos tão incríveis quanto ver uma interface perfeita renderizando pela primeira vez.</p>
+      
+      <p>Toda a MIDS 77 te deseja um ótimo aniversário e muitos anos de vida!! 💖</p>
+    </div>
+
+    <div class="carta-assinatura">
+      Com muito entusiasmo da turma,<br>
+      <strong>MIDS 77</strong>
+    </div>
+  </div>
+
+  <!-- Decoracoes inferiores -->
+  <div class="decoracao-inferior">
+    <div class="balao">🎈</div>
+    <div class="balao">🎁</div>
+    <div class="balao">🎂</div>
+    <div class="balao">🎈</div>
+  </div>
+
+  <!-- Canvas para confetes -->
+  <canvas id="confete"></canvas>
+
+  <script src="script.js"></script>
+  <script>
+    // Confetes especiais para a página da carta 6
+    document.addEventListener('DOMContentLoaded', () => {
+      // Explosão inicial de confetes vibrante
+      setTimeout(() => {
+        const centroX = window.innerWidth / 2;
+        const centroY = window.innerHeight / 2;
+        criarConfetes(35, true, centroX, centroY);
+        
+        // Explosões em sequência vibrante
+        setTimeout(() => {
+          criarConfetes(30, true, centroX - 150, centroY - 100);
+          criarConfetes(30, true, centroX + 150, centroY - 100);
+        }, 800);
+        
+        setTimeout(() => {
+          criarConfetes(28, true, centroX - 150, centroY + 100);
+          criarConfetes(28, true, centroX + 150, centroY + 100);
+        }, 1600);
+        
+        setTimeout(() => {
+          criarConfetes(25, true, centroX, centroY - 150);
+          criarConfetes(25, true, centroX, centroY + 150);
+        }, 2400);
+        
+        setTimeout(() => {
+          criarConfetes(22, true, centroX - 100, centroY);
+          criarConfetes(22, true, centroX + 100, centroY);
+        }, 3200);
+      }, 4000);
+
+      // Confetes ao clicar na carta
+      const cartaContainer = document.querySelector('.carta-container');
+      cartaContainer.addEventListener('click', () => {
+        const rect = cartaContainer.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        criarConfetes(30, true, x, y);
+        
+        // Efeito visual vibrante na carta
+        cartaContainer.style.transform = 'scale(1.05) rotate(2deg)';
+        setTimeout(() => {
+          cartaContainer.style.transform = '';
+        }, 500);
+      });
+
+      // Confetes vibrantes ao passar o mouse sobre parágrafos
+      const paragrafos = document.querySelectorAll('.carta-conteudo p');
+      paragrafos.forEach((paragrafo, index) => {
+        paragrafo.addEventListener('mouseenter', () => {
+          const rect = paragrafo.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          criarConfetes(15 + index * 4, true, x, y);
+          
+          // Efeito visual vibrante no parágrafo
+          paragrafo.style.transform = 'scale(1.05)';
+          paragrafo.style.textShadow = '0 0 40px rgba(255, 0, 255, 0.8)';
+          setTimeout(() => {
+            paragrafo.style.transform = '';
+            paragrafo.style.textShadow = '';
+          }, 400);
+        });
+      });
+
+      // Confetes especiais para o emoji 🎨
+      const emojiDecoracao = document.querySelector('.decoracao-carta:nth-child(1)');
+      if (emojiDecoracao) {
+        emojiDecoracao.addEventListener('click', () => {
+          const rect = emojiDecoracao.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          criarConfetes(25, true, x, y);
+          
+          // Efeito especial no emoji
+          emojiDecoracao.style.transform = 'scale(2) rotate(1080deg)';
+          emojiDecoracao.style.fontSize = '5rem';
+          setTimeout(() => {
+            emojiDecoracao.style.transform = '';
+            emojiDecoracao.style.fontSize = '';
+          }, 800);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

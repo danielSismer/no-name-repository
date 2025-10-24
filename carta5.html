@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta do Aluno 5 - Aniversário do Professor Kristian</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para a página da carta 5 */
+    .carta-container {
+      max-width: 900px;
+      margin: 100px auto 50px;
+      padding: 55px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(35px);
+      border-radius: 45px;
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 45px 90px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carta-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.12) 0%, 
+        rgba(255, 255, 255, 0.06) 25%,
+        rgba(255, 165, 0, 0.12) 50%,
+        rgba(255, 255, 255, 0.06) 75%,
+        rgba(255, 215, 0, 0.12) 100%);
+      pointer-events: none;
+    }
+
+    .carta-titulo {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 45px;
+      color: #ffd700;
+      text-shadow: 0 0 60px rgba(255, 215, 0, 0.9);
+      animation: tituloFestive 3s ease-in-out infinite alternate;
+    }
+
+    .carta-conteudo {
+      font-size: 1.5rem;
+      line-height: 2.0;
+      color: white;
+      text-align: justify;
+      margin-bottom: 45px;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .carta-conteudo p {
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateX(60px) rotateY(20deg);
+      animation: slideInFestive 1.6s ease-out forwards;
+    }
+
+    .carta-conteudo p:nth-child(1) { animation-delay: 0.9s; }
+    .carta-conteudo p:nth-child(2) { animation-delay: 1.5s; }
+    .carta-conteudo p:nth-child(3) { animation-delay: 2.1s; }
+    .carta-conteudo p:nth-child(4) { animation-delay: 2.7s; }
+
+    .carta-assinatura {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-top: 55px;
+      opacity: 0;
+      animation: festiveFadeIn 2.2s ease-out 3.8s forwards;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    }
+
+    .voltar-btn {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(25px);
+      border: 3px solid rgba(255, 255, 255, 0.25);
+      border-radius: 22px;
+      padding: 18px 30px;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.5s ease;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .voltar-btn:hover {
+      background: rgba(255, 215, 0, 0.3);
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .decoracao-carta {
+      position: absolute;
+      font-size: 3.2rem;
+      opacity: 0.18;
+      animation: festiveFloat 9s ease-in-out infinite;
+    }
+
+    .decoracao-carta:nth-child(1) {
+      top: 35px;
+      left: 35px;
+      animation-delay: 0s;
+    }
+
+    .decoracao-carta:nth-child(2) {
+      top: 35px;
+      right: 35px;
+      animation-delay: 2.25s;
+    }
+
+    .decoracao-carta:nth-child(3) {
+      bottom: 35px;
+      left: 35px;
+      animation-delay: 4.5s;
+    }
+
+    .decoracao-carta:nth-child(4) {
+      bottom: 35px;
+      right: 35px;
+      animation-delay: 6.75s;
+    }
+
+    .decoracao-carta:nth-child(5) {
+      top: 25%;
+      left: 25px;
+      animation-delay: 1.125s;
+    }
+
+    .decoracao-carta:nth-child(6) {
+      top: 25%;
+      right: 25px;
+      animation-delay: 3.375s;
+    }
+
+    .decoracao-carta:nth-child(7) {
+      bottom: 25%;
+      left: 25px;
+      animation-delay: 5.625s;
+    }
+
+    .decoracao-carta:nth-child(8) {
+      bottom: 25%;
+      right: 25px;
+      animation-delay: 7.875s;
+    }
+
+    @keyframes festiveFloat {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+      }
+      12.5% { 
+        transform: translateY(-18px) rotate(45deg) scale(1.15); 
+      }
+      25% { 
+        transform: translateY(-36px) rotate(90deg) scale(1.3); 
+      }
+      37.5% { 
+        transform: translateY(-18px) rotate(135deg) scale(1.15); 
+      }
+      50% { 
+        transform: translateY(0px) rotate(180deg) scale(1); 
+      }
+      62.5% { 
+        transform: translateY(18px) rotate(225deg) scale(0.85); 
+      }
+      75% { 
+        transform: translateY(36px) rotate(270deg) scale(0.7); 
+      }
+      87.5% { 
+        transform: translateY(18px) rotate(315deg) scale(0.85); 
+      }
+    }
+
+    @keyframes slideInFestive {
+      to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0deg);
+      }
+    }
+
+    @keyframes festiveFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1.05) rotate(1deg);
+      }
+    }
+
+    @keyframes tituloFestive {
+      0% { 
+        transform: scale(1) rotate(0deg);
+        text-shadow: 0 0 60px rgba(255, 215, 0, 0.9);
+      }
+      100% { 
+        transform: scale(1.04) rotate(2deg);
+        text-shadow: 0 0 80px rgba(255, 215, 0, 1);
+      }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .carta-container {
+        margin: 80px 20px 30px;
+        padding: 45px 35px;
+      }
+
+      .carta-titulo {
+        font-size: 2.5rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.3rem;
+      }
+
+      .voltar-btn {
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carta-container {
+        margin: 70px 15px 20px;
+        padding: 40px 30px;
+      }
+
+      .carta-titulo {
+        font-size: 2.2rem;
+      }
+
+      .carta-conteudo {
+        font-size: 1.2rem;
+        text-align: left;
+      }
+
+      .carta-conteudo p {
+        transform: translateY(30px);
+        animation: gentleFadeIn 1.6s ease-out forwards;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão de voltar -->
+  <a href="index.html" class="voltar-btn">← Voltar</a>
+
+  <!-- Decoracoes -->
+  <div class="decoracao-superior">
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+    <div class="estrela">💫</div>
+    <div class="estrela">✨</div>
+    <div class="estrela">🌟</div>
+  </div>
+
+  <!-- Container da carta -->
+  <div class="carta-container">
+    <!-- Decoracoes da carta -->
+    <div class="decoracao-carta">🎉</div>
+    <div class="decoracao-carta">🎊</div>
+    <div class="decoracao-carta">🎈</div>
+    <div class="decoracao-carta">🎁</div>
+    <div class="decoracao-carta">🎂</div>
+    <div class="decoracao-carta">🌟</div>
+    <div class="decoracao-carta">✨</div>
+    <div class="decoracao-carta">🎯</div>
+
+    <h1 class="carta-titulo">Carta Festiva</h1>
+    
+    <div class="carta-conteudo">
+      <p>Feliz aniversário, professor Kristian! 🎉</p>
+      
+      <p>Desejo a você um dia cheio de alegria, saúde e boas energias! Obrigada por compartilhar tanto conhecimento e por tornar as aulas de front-end leves, divertidas, inspiradoras — e, claro, cheias de várzea!</p>
+      
+      <p>Que seu novo ano seja repleto de sucesso, projetos incríveis, muitas conquistas e momentos únicos, dentro e fora do código.</p>
+      
+      <p>Parabéns por ser um professor tão dedicado e sempre disposto a nos ajudar em tudo!</p>
+    </div>
+
+    <div class="carta-assinatura">
+      Com muito entusiasmo,<br>
+      <strong>MIDS 77</strong>
+    </div>
+  </div>
+
+  <!-- Decoracoes inferiores -->
+  <div class="decoracao-inferior">
+    <div class="balao">🎈</div>
+    <div class="balao">🎁</div>
+    <div class="balao">🎂</div>
+    <div class="balao">🎈</div>
+  </div>
+
+  <!-- Canvas para confetes -->
+  <canvas id="confete"></canvas>
+
+  <script src="script.js"></script>
+  <script>
+    // Confetes especiais para a página da carta 5
+    document.addEventListener('DOMContentLoaded', () => {
+      // Explosão inicial de confetes festiva
+      setTimeout(() => {
+        const centroX = window.innerWidth / 2;
+        const centroY = window.innerHeight / 2;
+        criarConfetes(30, true, centroX, centroY);
+        
+        // Explosões em sequência festiva
+        setTimeout(() => {
+          criarConfetes(25, true, centroX - 120, centroY - 80);
+          criarConfetes(25, true, centroX + 120, centroY - 80);
+        }, 700);
+        
+        setTimeout(() => {
+          criarConfetes(22, true, centroX - 120, centroY + 80);
+          criarConfetes(22, true, centroX + 120, centroY + 80);
+        }, 1400);
+        
+        setTimeout(() => {
+          criarConfetes(20, true, centroX, centroY - 120);
+          criarConfetes(20, true, centroX, centroY + 120);
+        }, 2100);
+      }, 3500);
+
+      // Confetes ao clicar na carta
+      const cartaContainer = document.querySelector('.carta-container');
+      cartaContainer.addEventListener('click', () => {
+        const rect = cartaContainer.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        criarConfetes(25, true, x, y);
+        
+        // Efeito visual festivo na carta
+        cartaContainer.style.transform = 'scale(1.04) rotate(1deg)';
+        setTimeout(() => {
+          cartaContainer.style.transform = '';
+        }, 400);
+      });
+
+      // Confetes festivos ao passar o mouse sobre parágrafos
+      const paragrafos = document.querySelectorAll('.carta-conteudo p');
+      paragrafos.forEach((paragrafo, index) => {
+        paragrafo.addEventListener('mouseenter', () => {
+          const rect = paragrafo.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          criarConfetes(12 + index * 3, true, x, y);
+          
+          // Efeito visual festivo no parágrafo
+          paragrafo.style.transform = 'scale(1.03)';
+          paragrafo.style.textShadow = '0 0 35px rgba(255, 215, 0, 0.6)';
+          setTimeout(() => {
+            paragrafo.style.transform = '';
+            paragrafo.style.textShadow = '';
+          }, 350);
+        });
+      });
+
+      // Confetes especiais para o emoji 🎉
+      const emojiDecoracao = document.querySelector('.decoracao-carta:nth-child(1)');
+      if (emojiDecoracao) {
+        emojiDecoracao.addEventListener('click', () => {
+          const rect = emojiDecoracao.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          criarConfetes(20, true, x, y);
+          
+          // Efeito especial no emoji
+          emojiDecoracao.style.transform = 'scale(1.8) rotate(720deg)';
+          emojiDecoracao.style.fontSize = '4.5rem';
+          setTimeout(() => {
+            emojiDecoracao.style.transform = '';
+            emojiDecoracao.style.fontSize = '';
+          }, 600);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
