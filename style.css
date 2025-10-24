@@ -6,9 +6,9 @@
 }
 
 body {
-  background: radial-gradient(circle, #000 60%, #7d0000);
-  color: white;
-  overflow-x: hidden;
+  background: linear-gradient(to bottom, #d0e7ff, #9ecaff);
+  color: black;
+  overflow: hidden;
   min-height: 100vh;
 }
 
@@ -26,14 +26,27 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 11;
 }
 
 .bar {
   height: 5px;
   width: 100%;
-  background: white;
+  background: black;
   border-radius: 5px;
   transition: all 0.3s ease;
+}
+
+.hamburguer.ativo .bar:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburguer.ativo .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburguer.ativo .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .menu {
@@ -42,11 +55,12 @@ header {
   left: -100%;
   width: 250px;
   height: 100%;
-  background: rgba(255, 0, 0, 0.9);
+  background: rgba(90, 160, 255, 0.9);
   transition: left 0.4s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 9;
 }
 
 .menu ul {
@@ -80,13 +94,20 @@ header {
   margin-top: 180px;
   position: relative;
   z-index: 1;
-  color: white;
+  color: black;
+  text-shadow: 0 0 10px white;
+  animation: pulsar 2s infinite ease-in-out;
 }
 
 .titulo span {
-  color: #ff0000;
+  color: black;
   font-size: 1.3em;
-  text-shadow: 0 0 20px red;
+  text-shadow: 0 0 20px white;
+}
+
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .imagens-animadas {
@@ -120,4 +141,13 @@ img:nth-child(3) {
 
 img:nth-child(4) {
   animation-delay: 6s;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
