@@ -201,3 +201,28 @@ document.addEventListener('DOMContentLoaded', () => {
     titulo.innerHTML = textoOriginal;
   }, 1000);
 });
+
+// ======== MÚSICA DE FUNDO AUTOMÁTICA ========
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('backgroundMusic');
+  
+  if (audio) {
+    // Configurações iniciais
+    audio.volume = 0.3; // Volume baixo para música de fundo
+    
+    // Tenta reproduzir automaticamente
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        console.log('Música de fundo iniciada automaticamente');
+      }).catch(error => {
+        console.log('Erro na reprodução automática:', error);
+        // Se falhar, tenta novamente após interação do usuário
+        document.addEventListener('click', () => {
+          audio.play().catch(e => console.log('Erro ao reproduzir:', e));
+        }, { once: true });
+      });
+    }
+  }
+});
